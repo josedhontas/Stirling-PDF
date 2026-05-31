@@ -48,11 +48,7 @@ export default function Onboarding() {
 
   const { osInfo, osOptions, setSelectedDownloadUrl, handleDownloadSelected } =
     useOnboardingDownload();
-  const {
-    showLicenseSlide,
-    licenseNotice: externalLicenseNotice,
-    closeLicenseSlide,
-  } = useServerLicenseRequest();
+  const { showLicenseSlide } = useServerLicenseRequest();
   const {
     tourRequested: externalTourRequested,
     requestedTourType,
@@ -519,48 +515,7 @@ export default function Onboarding() {
   }
 
   if (showLicenseSlide) {
-    const baseSlideDefinition = SLIDE_DEFINITIONS["server-license"];
-    // Remove back button for external license notice
-    const slideDefinition = {
-      ...baseSlideDefinition,
-      buttons: baseSlideDefinition.buttons.filter(
-        (btn) => btn.key !== "license-back",
-      ),
-    };
-    const effectiveLicenseNotice =
-      externalLicenseNotice || runtimeState.licenseNotice;
-    const slideContent = slideDefinition.createSlide({
-      osLabel: "",
-      osUrl: "",
-      osOptions: [],
-      onDownloadUrlChange: () => {},
-      selectedRole: null,
-      onRoleSelect: () => {},
-      licenseNotice: effectiveLicenseNotice,
-      loginEnabled: serverExperience.loginEnabled,
-    });
-
-    return (
-      <OnboardingModalSlide
-        slideDefinition={slideDefinition}
-        slideContent={slideContent}
-        runtimeState={{
-          ...runtimeState,
-          licenseNotice: effectiveLicenseNotice,
-        }}
-        modalSlideCount={1}
-        currentModalSlideIndex={0}
-        onSkip={closeLicenseSlide}
-        onAction={(action) => {
-          if (action === "see-plans") {
-            closeLicenseSlide();
-            navigate("/settings/adminPlan");
-          } else {
-            closeLicenseSlide();
-          }
-        }}
-      />
-    );
+    return null;
   }
 
   // Always render the tour component (it controls its own visibility with isOpen)

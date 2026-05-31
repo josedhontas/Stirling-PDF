@@ -122,8 +122,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     id: "server-license",
     type: "modal-slide",
     slideId: "server-license",
-    condition: (ctx) =>
-      ctx.effectiveIsAdmin && ctx.licenseNotice.requiresLicense,
+    condition: () => false,
   },
   {
     id: "mfa-setup",

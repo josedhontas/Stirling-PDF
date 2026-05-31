@@ -6,8 +6,8 @@ i18n
   .use(TomlBackend)
   .use(initReactI18next)
   .init({
-    lng: "en",
-    fallbackLng: "en",
+    lng: "pt-BR",
+    fallbackLng: "pt-BR",
     debug: false,
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.toml",
